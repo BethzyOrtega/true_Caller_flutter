@@ -35,13 +35,6 @@ class _MyAppState extends State<callScreen> {
     _enterprise = res['enterprise'];   
   }
 
-  // @override
-  // void initState() {
-  //       super.initState();
-  //       getData();
-  // }
-
-
   Future<dynamic> _getListado() async {
     String url = "https://us-central1-seleccion-qa.cloudfunctions.net/getNumberphone?phone=" + widget.num;
     final respuesta = await http.get(Uri.parse(url));
@@ -66,8 +59,6 @@ class _MyAppState extends State<callScreen> {
   AudioSessionEvent? _lastAudioSessionEvent;
 
   void _incomingCall() {
-    print('listo');
-    print(_name);
     
     final uid = uuid.v4();
     final name = _name;
@@ -114,20 +105,6 @@ class _MyAppState extends State<callScreen> {
         maximumCallsPerCallGroup: 1,
       )
     );
-    // FlutterIncomingCall.onEvent.listen((event) {
-    //   setState(() { _lastEvent = event; });
-    //   if(event is CallEvent) {
-    //     setState(() { _lastCallEvent = event; });
-    //   } else if(event is HoldEvent) {
-    //     setState(() { _lastHoldEvent = event; });
-    //   } else if(event is MuteEvent) {
-    //     setState(() { _lastMuteEvent = event; });
-    //   } else if(event is DmtfEvent) {
-    //     setState(() { _lastDmtfEvent = event; });
-    //   } else if(event is AudioSessionEvent) {
-    //     setState(() { _lastAudioSessionEvent = event; });
-    //   }
-    // });
 
     FlutterIncomingCall.onEvent.listen((event) {
     if(event is CallEvent) { // Android | IOS
